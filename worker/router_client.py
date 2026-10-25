@@ -1,5 +1,6 @@
 from netmiko import ConnectHandler
-import ntc_templates, os, json
+import os
+import ntc_templates
 
 
 def get_interfaces(ip, username, password):
