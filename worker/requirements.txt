@@ -1,0 +1,6 @@
+pika
+netmiko
+ntc-templates
+pymongo
+dnspython
+
