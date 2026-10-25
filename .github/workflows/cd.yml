@@ -15,9 +15,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Pull Latest Docker Images
+      - name: Create .env file
         run: |
-          docker compose pull
+          echo "${{ secrets.ENV_FILE }}" > .env
 
       - name: Deploy / Update Services
         run: |
