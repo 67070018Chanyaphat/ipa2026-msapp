@@ -3,7 +3,6 @@ import time
 import pika
 from callback import callback
 
-
 user = os.getenv("RABBITMQ_DEFAULT_USER")
 pwd = os.getenv("RABBITMQ_DEFAULT_PASS")
 
