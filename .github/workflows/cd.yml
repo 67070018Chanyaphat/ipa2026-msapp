@@ -1,0 +1,28 @@
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Pull Latest Docker Images
+        run: |
+          docker compose pull
+
+      - name: Deploy / Update Services
+        run: |
+          docker compose up -d --build --scale worker=3
+
+      - name: Clean up unused Docker images
+        run: |
+          docker image prune -f
